@@ -1,0 +1,10 @@
+if [ "$#" -eq 1 ]; then
+	ovs-vsctl del-port br0 $1
+fi
+ovs-vsctl del-br br0
+ovs-ctl stop
+modprobe -r vport_geneve
+modprobe -r vport_gre
+modprobe -r vport_vxlan
+modprobe -r openvswitch
+
