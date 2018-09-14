@@ -1,4 +1,4 @@
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 3 ]; then
     echo "Usage: add-erspan-type1 <remote_ip> <key> <erspan_idx>"
     exit 1
 fi
