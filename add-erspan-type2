@@ -1,9 +1,9 @@
-if [ "$#" -ne 4 ]; then
-    echo "Usage: add-erspan-type2 <remote_ip> <key> <dir> <hwid>"
+if [ "$#" -ne 5 ]; then
+    echo "Usage: add-erspan-type2 <name> <remote_ip> <key> <dir> <hwid>"
     exit 1
 fi
-ovs-vsctl add-port br0 at_erspan0 -- set int at_erspan0 type=erspan \
-    options:remote_ip=$1 options:key=$2 \
-    options:erspan_dir=$3 options:erspan_hwid=$4 \
+ovs-vsctl add-port br0 $1 -- set int $1 type=erspan \
+    options:remote_ip=$2 options:key=$3 \
+    options:erspan_dir=$4 options:erspan_hwid=$5 \
     options:erspan_ver=2 options:tos=inherit
 
