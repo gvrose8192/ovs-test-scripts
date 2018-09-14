@@ -4,5 +4,5 @@ if [ "$#" -ne 3 ]; then
 fi
 ovs-vsctl add-port br0 at_erspan0 -- set int at_erspan0 \
     type=erspan options:remote_ip=$1 \
-    options:key=$2
+    options:key=$2 \
     options:erspan_ver=1 options:erspan_idx=$3
