@@ -1,0 +1,6 @@
+if [ "$#" -ne 3 ]; then
+    echo "Usage: add-ip6gre <name> <remote_ip> <key>"
+    exit 1
+fi
+ovs-vsctl add-port br0 $1 -- set interface $1 type=ip6gre \
+    options:remote_ip=$2 options:key=$3
