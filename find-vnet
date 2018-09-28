@@ -1,0 +1,8 @@
+if [ "$#" -ne 1 ]; then
+    echo "Usage: find-vnet <vnet>"
+    exit 1
+fi
+for vm in $(virsh list | grep running | awk '{print $2}')
+do
+    virsh dumpxml $vm|grep -q "$1" && echo $vm
+done
