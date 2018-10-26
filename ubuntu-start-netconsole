@@ -1,0 +1,17 @@
+if [ "$#" -ne 3 ]; then
+    echo "Usage: ubuntu-start-netconsole <local_ip> <remote_ip> <intf>"
+    exit 1
+fi
+
+modprobe netconsole
+sleep 2
+mkdir /sys/kernel/config/netconsole/target1
+cd /sys/kernel/config/netconsole/target1
+echo $1 > local_ip
+echo $3 > dev_name
+echo $2 > remote_ip
+arping $(cat remote_ip) -C 1 | grep -o ..:..:..:..:..:.. > remote_mac
+dmesg -n 8
+echo 1 > enabled
+echo Console Logging Enabled
+echo Console Logging Enabled > /dev/kmsg
