@@ -1,6 +1,6 @@
-if [ "$#" -ne 3 ]; then
-    echo "Usage: add-gre <name> <remote_ip> <key>"
+if [ "$#" -ne 4 ]; then
+    echo "Usage: add-gre <name> <bridge> <remote_ip> <key>"
     exit 1
 fi
-ovs-vsctl add-port br0 $1 -- set interface $1 type=gre \
-    options:remote_ip=$2 options:key=$3
+ovs-vsctl add-port $2 $1 -- set interface $1 type=gre \
+    options:remote_ip=$3 options:key=$4
