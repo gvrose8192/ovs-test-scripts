@@ -1,10 +1,10 @@
 if [ "$#" -ne 4 ]; then
-    echo "Usage: add-ns <name> <veth-name> <peer-name> <ip4-address>"
+    echo "Usage: add-ns <name> <veth-name> <peer-name> <ip-address/CIDR>"
     exit 1
 fi
 ip netns add $1
 ip link add $2 type veth peer name $3
 ip link set $2 netns $1
 ip link set dev $3 up
-ip netns exec $1 ip addr add $4/24 dev $2
+ip netns exec $1 ip addr add $4 dev $2
 ip netns exec $1 ip link set dev $2 up
