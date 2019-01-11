@@ -1,0 +1,7 @@
+ovs-vsctl del-port br0 p0
+ovs-vsctl del-port br0 p1
+ip netns del at_ns0
+ip netns del at_ns1
+ovs-ctl stop
+ovs-dpctl del-dp system@ovs-system
+modprobe -r openvswitch

@@ -1,0 +1,5 @@
+ovs-ctl start
+./add-ns at_ns0 v0 p0 fc00::1/96
+./add-ns at_ns1 v1 p1 fc00::2/96
+ovs-vsctl add-port br0 p0
+ovs-vsctl add-port br0 p1
