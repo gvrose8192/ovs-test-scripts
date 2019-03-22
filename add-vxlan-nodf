@@ -1,0 +1,6 @@
+if [ "$#" -ne 5 ]; then
+    echo "Usage: add-vxlan-localip <name> <bridge> <remote_ip> <[true|false]> <key>"
+    exit 1
+fi
+ovs-vsctl add-port $2 $1 -- set interface $1 type=vxlan \
+    options:remote_ip=$3 options:df_default=$4 options:key=$5
