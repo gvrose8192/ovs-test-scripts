@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ -e _build ]; then
+	echo "Remove _build directory first!"
+	exit 1
+fi
+./boot.sh
+mkdir _build
+cd _build
+../configure --with-linux=/lib/modules/$(uname -r)/build --enable-Werror
+if [ "$1" == "datapath" ]; then
+	cd datapath
+fi
+make -j12
