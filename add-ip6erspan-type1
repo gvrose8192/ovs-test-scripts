@@ -1,0 +1,8 @@
+if [ "$#" -ne 4 ]; then
+    echo "Usage: add-ip6erspan-type1 <name> <remote_ip6> <key> <erspan_idx>"
+    exit 1
+fi
+ovs-vsctl add-port br0 $1 -- set int $1 \
+    type=ip6erspan options:remote_ip=$2 \
+    options:key=$3 \
+    options:erspan_ver=1 options:erspan_idx=$4
