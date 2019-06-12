@@ -1,0 +1,11 @@
+#!/bin/bash
+export PATH=/usr/local/bin:/usr/local/share/openvswitch/scripts:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+
+if [ -d /home/roseg/prj/ovs-experimental/_build ]; then
+    cd /home/roseg/prj/ovs-experimental/_build
+    make check-kmod
+    cd /root
+    mv /home/roseg/prj/ovs-experimental/_build /home/roseg/prj/ovs-experimental/_build-`date -Iseconds`
+else
+   echo Nothing to check!
+fi

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export PATH=/home/roseg/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+if [ -d /home/roseg/prj/ovs-experimental/_build ]; then
+    exit 1
+fi
+cd /home/roseg/prj/ovs-experimental
+git checkout master
+git pull
+git fetch -p
+build
