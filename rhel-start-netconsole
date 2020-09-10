@@ -1,3 +1,8 @@
+# This script is for dynamic setup of netconsole sender
+# If you need to setup for netconsole sender on boot use these
+# instructions here:
+# https://support.cumulusnetworks.com/hc/en-us/articles/360048252933-Using-netconsole-with-syslog-on-Cumulus-Linux-Switches
+
 if [ "$#" -ne 3 ]; then
     echo "Usage: rhel-start-netconsole <local_ip> <remote_ip> <intf>"
     exit 1
