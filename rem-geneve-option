@@ -1,4 +1,4 @@
-if [ "$#" -ne 6 ]; then
+if [ "$#" -ne 5 ]; then
     echo "Usage: add-geneve-option <bridge> <class> <type> <len> <tun_metadata[x]>"
     exit 1
 fi
