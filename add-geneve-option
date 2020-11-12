@@ -1,8 +1,7 @@
 if [ "$#" -ne 6 ]; then
-    echo "Usage: add-geneve-option <bridge> <class> <type> <len> <tun_metadata[x]>"
+    echo "Usage: add-geneve-option <bridge> <class> <type> <len> <tun_metadata[x]> <port>"
     exit 1
 fi
-
-ovs-ofctl add-tlv-map $1 "{$2,type=$3,len=$4}->$5"
-  287  ovs-ofctl add-flow $1 "in_port=LOCAL,actions=set_field:0xffffffff->$5,1"
-
+ovs-ofctl add-tlv-map $1 "{class=$2,type=$3,len=$4}->$5"
+ovs-ofctl add-flow $1 "in_port=LOCAL,actions=set_field:0xffffffff->$5,1"
+ovs-ofctl add-flow $1 in_port=$6,actions=LOCAL
