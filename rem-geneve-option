@@ -1,0 +1,7 @@
+if [ "$#" -ne 6 ]; then
+    echo "Usage: add-geneve-option <bridge> <class> <type> <len> <tun_metadata[x]>"
+    exit 1
+fi
+
+ovs-ofctl del-flows $1
+ovs-ofctl del-tlv-map $1 "{class=$2,type=$3,len=$4}->$5"
