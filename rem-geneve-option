@@ -5,3 +5,4 @@ fi
 
 ovs-ofctl del-flows $1
 ovs-ofctl del-tlv-map $1 "{class=$2,type=$3,len=$4}->$5"
+ovs-ofctl add-flow $1 "actions=normal"
