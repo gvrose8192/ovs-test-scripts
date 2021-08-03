@@ -1,0 +1,38 @@
+tc filter add dev enp2s0f0 protocol 0x806 parent ffff: \
+                flower \
+                       dst_mac ff:ff:ff:ff:ff:ff \
+                       src_mac 1c:34:da:64:3b:a8 \
+                action tunnel_key set \
+                src_ip 171.31.2.163 \
+                dst_ip 171.31.2.62 \
+                id 100 \
+                action mirred egress redirect dev vxlan100
+tc filter add dev enp2s0f0 protocol 0x806 parent ffff: \
+                flower \
+                       dst_mac 1c:34:da:64:3b:b4 \
+                       src_mac 1c:34:da:64:3b:a8 \
+                action tunnel_key set \
+                src_ip 171.31.2.163 \
+                dst_ip 171.31.2.62 \
+                id 100 \
+                action mirred egress redirect dev vxlan100
+tc filter add dev enp2s0f0 protocol ip parent ffff: \
+                flower \
+                         dst_mac ff:ff:ff:ff:ff:ff \
+                         src_mac 1c:34:da:64:3b:a8 \
+                         enc_src_ip 171.31.1.163 \
+                         enc_dst_ip 171.31.1.62 \
+                         enc_dst_port 4789 \
+			 enc_key_id 100 \
+                	 action tunnel_key unset \
+                action mirred egress redirect dev vxlan100
+tc filter add dev enp2s0f0 protocol ip parent ffff: \
+                flower \
+                         dst_mac 1c:34:da:64:3b:b4 \
+                         src_mac 1c:34:da:64:3b:a8 \
+                         enc_src_ip 171.31.1.163 \
+                         enc_dst_ip 171.31.1.62 \
+                         enc_dst_port 4789 \
+			 enc_key_id 100 \
+                	 action tunnel_key unset \
+                action mirred egress redirect dev vxlan100
